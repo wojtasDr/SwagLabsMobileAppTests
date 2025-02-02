@@ -44,4 +44,5 @@ class CartPage extends MainBarPage{
         await this.checkoutButton.click();
     }
 }
+
 export default new CartPage();

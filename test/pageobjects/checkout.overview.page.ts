@@ -74,4 +74,5 @@ class CheckoutOverviewPage extends MainBarPage {
         await this.finishButton.click();
     }
 }
+
 export default new CheckoutOverviewPage();

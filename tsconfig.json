@@ -26,7 +26,6 @@
     },
     "include": [
         "test",
-        "wdio.conf.ts",
         "android.conf.ts",
         "ios.conf.ts"
     ]

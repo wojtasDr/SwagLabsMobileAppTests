@@ -81,4 +81,5 @@ class ProductsPage extends MainBarPage {
         await this.removeButton(productName).click();
     }
 }
+
 export default new ProductsPage();

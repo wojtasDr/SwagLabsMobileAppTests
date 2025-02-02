@@ -42,10 +42,6 @@ class CheckoutInformationPage extends MainBarPage {
         await this.continueButton.click();
     }
 
-    public async getErrorMessage(): Promise<string> {
-        return await this.errorMessage.getText();
-    }
-
     public async fillInCheckoutFormAndContinue(firstName: string, lastName: string, zipPostalCode: string): Promise<void> {
         await this.typeFirstName(firstName);
         await this.typeLastName(lastName);
@@ -53,4 +49,5 @@ class CheckoutInformationPage extends MainBarPage {
         await this.clickContinueButton();
     }
 }
+
 export default new CheckoutInformationPage();

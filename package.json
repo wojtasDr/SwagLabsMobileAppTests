@@ -18,8 +18,9 @@
     "wdio-wait-for": "^3.0.11"
   },
   "scripts": {
-    "wdio": "npx wdio run ./wdio.conf.ts",
-    "android": "npx wdio run android.conf.ts",
-    "ios": "npx wdio run ios.conf.ts"
+    "android": "npm run allure:clean && npx wdio run android.conf.ts",
+    "ios": "npm run allure:clean && npx wdio run ios.conf.ts",
+    "allure:clean": "rm -rf allure-results allure-report",
+    "allure:report": "allure generate allure-results --clean -o allure-report && allure open allure-report"
   }
 }

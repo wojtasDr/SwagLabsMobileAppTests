@@ -18,7 +18,6 @@ videos/
 *.sw?
 .DS_Store
 Thumbs.db
-package-lock.json
 yarn.lock
 *.tmp
 *.bak

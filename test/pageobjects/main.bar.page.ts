@@ -16,8 +16,4 @@ export default class MainBarPage {
     public async goToCart(): Promise<void> {
         await this.cartIcon.click();
     }
-
-    public async getNumberOfCartItems(): Promise<string> {
-        return await this.cartItemsNumber.getText();
-    }
 }

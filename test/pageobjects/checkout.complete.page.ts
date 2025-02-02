@@ -14,4 +14,5 @@ class CheckoutCompletePage extends MainBarPage {
        return await this.successMessage.getText();
     }
 }
+
 export default new CheckoutCompletePage();
