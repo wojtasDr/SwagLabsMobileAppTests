@@ -5,27 +5,43 @@ import {$} from "@wdio/globals";
 class CheckoutOverviewPage extends MainBarPage {
     //locators
     public get productName(): ChainablePromiseElement {
-        return $('//android.view.ViewGroup[@content-desc="test-Description"]/android.widget.TextView');
+        const locator = driver.isIOS ? '//XCUIElementTypeOther[@name="test-Description"]/XCUIElementTypeStaticText' :
+            '//android.view.ViewGroup[@content-desc="test-Description"]/android.widget.TextView';
+        return $(locator);
     }
 
     public get totalNetPrice(): ChainablePromiseElement {
-        return $('//android.widget.TextView[contains(@text, "Item total")]');
+        const locator = driver.isIOS ? '//XCUIElementTypeStaticText[contains(@name, "Item total")]' :
+            '//android.widget.TextView[contains(@text, "Item total")]';
+        return $(locator);
     }
 
     public get totalTax(): ChainablePromiseElement {
-        return $('//android.widget.TextView[contains(@text, "Tax")]');
+        const locator = driver.isIOS ? '//XCUIElementTypeStaticText[contains(@name, "Tax")]' :
+            '//android.widget.TextView[contains(@text, "Tax")]';
+        return $(locator);
     }
 
     public get totalGrossPrice(): ChainablePromiseElement {
-        return $('//android.widget.TextView[contains(@text, "Total")]');
+        const locator = driver.isIOS ? '//XCUIElementTypeStaticText[contains(@name, "Total")]' :
+            '//android.widget.TextView[contains(@text, "Total")]';
+        return $(locator);
     }
 
     public productQuantity(productName: string): ChainablePromiseElement {
-        return  $(`//android.widget.TextView[@text="${productName}"]/../../android.view.ViewGroup[@content-desc="test-Amount"]/android.widget.TextView`);
+        const locator = driver.isIOS ? `//XCUIElementTypeStaticText[@label="${productName}"]/../../..//XCUIElementTypeOther[@name="test-Amount"]` :
+            `//android.widget.TextView[@text="${productName}"]/../../android.view.ViewGroup[@content-desc="test-Amount"]/android.widget.TextView`;
+        return $(locator);
     }
 
     public productPrice(productName: string): ChainablePromiseElement {
-        return  $(`//android.widget.TextView[@text="${productName}"]/../../android.view.ViewGroup[@content-desc="test-Price"]/android.widget.TextView`);
+        const locator = driver.isIOS ? `//XCUIElementTypeStaticText[@label="${productName}"]/../../..//XCUIElementTypeOther[@name="test-Price"]` :
+            `//android.widget.TextView[@text="${productName}"]/../../android.view.ViewGroup[@content-desc="test-Price"]/android.widget.TextView`;
+        return $(locator);
+    }
+
+    public get finishButton(): ChainablePromiseElement {
+        return $('~test-FINISH');
     }
 
     //actions
@@ -49,17 +65,13 @@ class CheckoutOverviewPage extends MainBarPage {
         return await this.totalGrossPrice.getText();
     }
 
-    public get finishButton(): ChainablePromiseElement {
-        return $('~test-FINISH');
-    }
-
     public async getProductName(): Promise<string> {
         return await this.productName.getText();
     }
 
     public async clickFinishButton(): Promise<void> {
-        const finishButton = await ActionsUtils.scrollToElement('FINISH');
-        await finishButton.click();
+        await ActionsUtils.scrollToElement('FINISH');
+        await this.finishButton.click();
     }
 }
 export default new CheckoutOverviewPage();

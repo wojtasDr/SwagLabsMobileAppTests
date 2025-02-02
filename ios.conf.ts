@@ -24,7 +24,7 @@ export const config: WebdriverIO.Config = {
     reporters: ['junit', ['allure', {outputDir: 'allure-results'}]],
     mochaOpts: {
         ui: 'bdd',
-        timeout: 100000
+        timeout: 200000
     },
     /**
      * Function to be executed after a test (in Mocha/Jasmine only)

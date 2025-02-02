@@ -5,15 +5,21 @@ import ActionsUtils from "../utils/action.utils.ts";
 class CartPage extends MainBarPage{
     //locators
     public productQuantity(productName: string): ChainablePromiseElement {
-        return  $(`//android.widget.TextView[@text="${productName}"]/../../android.view.ViewGroup[@content-desc="test-Amount"]/android.widget.TextView`);
+        const locator = driver.isIOS ? `//XCUIElementTypeStaticText[@label="${productName}"]/../../..//XCUIElementTypeOther[@name="test-Amount"]` :
+            `//android.widget.TextView[@text="${productName}"]/../../android.view.ViewGroup[@content-desc="test-Amount"]/android.widget.TextView`;
+        return $(locator);
     }
 
     public productPrice(productName: string): ChainablePromiseElement {
-        return  $(`//android.widget.TextView[@text="${productName}"]/../../android.view.ViewGroup[@content-desc="test-Price"]/android.widget.TextView`);
+        const locator = driver.isIOS ? `//XCUIElementTypeStaticText[@label="${productName}"]/../../..//XCUIElementTypeOther[@name="test-Price"]/XCUIElementTypeStaticText` :
+            `//android.widget.TextView[@text="${productName}"]/../../android.view.ViewGroup[@content-desc="test-Price"]/android.widget.TextView`;
+        return $(locator);
     }
 
     public removeButton(productName: string): ChainablePromiseElement {
-        return  $(`//android.widget.TextView[@text="${productName}"]/../..//android.view.ViewGroup[@content-desc="test-REMOVE"]/android.widget.TextView`);
+        const locator = driver.isIOS ? `//XCUIElementTypeStaticText[@label="${productName}"]/../../..//XCUIElementTypeOther[@name="REMOVE"]` :
+            `//android.widget.TextView[@text="${productName}"]/../..//android.view.ViewGroup[@content-desc="test-REMOVE"]/android.widget.TextView`;
+        return $(locator);
     }
 
     public get checkoutButton(): ChainablePromiseElement {

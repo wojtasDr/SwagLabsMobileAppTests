@@ -1,11 +1,19 @@
 class ActionUtils {
     public async  scrollToElement(elementText: string): Promise<ChainablePromiseElement> {
         await this.scrollToBeginning();
+        if(driver.isIOS) {
+            return await driver.execute('mobile: scroll', {
+                direction: 'down',
+                predicateString: `name == "${elementText}"`,
+                toVisible: true,
+            })
+        }
         return await $(`android=new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().text("${elementText}"))`);
     }
 
-    public async scrollToBeginning(): Promise<ChainablePromiseElement> {
-        await $(`android=new UiScrollable(new UiSelector().scrollable(true)).scrollToBeginning(3)`);
+    public async scrollToBeginning(): Promise<void> {
+        driver.isIOS ? await driver.execute('mobile: scroll', { direction: 'up' }) :
+            await $(`android=new UiScrollable(new UiSelector().scrollable(true)).scrollToBeginning(3)`);
     }
 
     public async scrollDownHalfScreen(): Promise<void> {

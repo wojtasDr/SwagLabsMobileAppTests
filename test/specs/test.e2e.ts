@@ -99,7 +99,7 @@ describe('Purchase process tests', () => {
         await expect(numericPrices).toEqual(sortedPrices);
     });
 
-    it('Check purchase process - happy path', async () => {
+    it('Check if products can be added and deleted from cart', async () => {
         const secondProductName: string = 'Sauce Labs Bike Light';
         const thirdProductName: string = 'Sauce Labs Backpack';
 
@@ -128,10 +128,5 @@ describe('Purchase process tests', () => {
         //check if cart icon does not show any number
         await expect(await CartPage.cartItemsNumber.isExisting()).toEqual(false);
     });
-
-    it.only('Check purchase process - happy path', async () => {
-        await LoginPage.login('standard_user', 'secret_sauce');
-    });
-
 })
 

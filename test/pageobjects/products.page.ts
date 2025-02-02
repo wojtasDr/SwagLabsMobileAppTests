@@ -9,7 +9,9 @@ class ProductsPage extends MainBarPage {
     }
 
     public filterOption(optionName: string): ChainablePromiseElement {
-        return $(`//android.widget.TextView[@text="${optionName}"]`);
+        const locator = driver.isIOS ? `//XCUIElementTypeOther[@name="${optionName}"]` :
+            `//android.widget.TextView[@text="${optionName}"]`;
+        return $(locator);
     }
 
     public get productsTitles(): ChainablePromiseArray {
@@ -21,11 +23,15 @@ class ProductsPage extends MainBarPage {
     }
 
     public addToCartButtonByProductText(productName: string) {
-        return $(`//android.widget.TextView[@text="${productName}"]/../android.view.ViewGroup[@content-desc="test-ADD TO CART"]`);
+        const locator = driver.isIOS ? `//XCUIElementTypeStaticText[@label="${productName}"]/../..//XCUIElementTypeOther[@name="ADD TO CART"]` :
+            `//android.widget.TextView[@text="${productName}"]/../android.view.ViewGroup[@content-desc="test-ADD TO CART"]`;
+        return $(locator);
     }
 
     public removeButton(productName: string): ChainablePromiseElement {
-        return  $(`//android.widget.TextView[@text="${productName}"]/../android.view.ViewGroup[@content-desc="test-REMOVE"]`);
+        const locator = driver.isIOS ? `//XCUIElementTypeStaticText[@label="${productName}"]/../..//XCUIElementTypeOther[@name="REMOVE"]` :
+            `//android.widget.TextView[@text="${productName}"]/../android.view.ViewGroup[@content-desc="test-REMOVE"]`;
+        return $(locator);
     }
 
     //actions

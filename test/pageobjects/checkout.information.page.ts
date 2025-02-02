@@ -1,4 +1,5 @@
 import MainBarPage from "./main.bar.page.ts";
+import {$} from "@wdio/globals";
 
 class CheckoutInformationPage extends MainBarPage {
     //locators
@@ -19,7 +20,9 @@ class CheckoutInformationPage extends MainBarPage {
     }
 
     public get errorMessage() {
-        return $('//android.view.ViewGroup[@content-desc="test-Error message"]/android.widget.TextView');
+        const locator = driver.isIOS ? '//XCUIElementTypeOther[@name="test-Error message"]/XCUIElementTypeStaticText' :
+            '//android.view.ViewGroup[@content-desc="test-Error message"]/android.widget.TextView';
+        return $(locator);
     }
 
     //actions

@@ -7,7 +7,9 @@ export default class MainBarPage {
     }
 
     public get cartItemsNumber() {
-        return $('//android.view.ViewGroup[@content-desc="test-Cart"]//android.widget.TextView');
+        const locator = driver.isIOS ? '//XCUIElementTypeOther[@name="test-Cart"]/XCUIElementTypeOther[@name]' :
+            '//android.view.ViewGroup[@content-desc="test-Cart"]//android.widget.TextView';
+        return $(locator);
     }
 
     //actions
